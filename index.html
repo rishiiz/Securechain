@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureChain – Business Fraud Detection Using Blockchain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ========== LANDING PAGE (distinct layout: split left/right, no radar copy) ========== -->
+  <div id="landing-page" class="app-section landing-view">
+    <div class="landing-bg-pattern"></div>
+    <div class="landing-wrap">
+      <div class="landing-left">
+        <h1 class="landing-headline">SecureChain</h1>
+        <p class="landing-tagline">Business Fraud Detection Using Blockchain & AI</p>
+        <p class="landing-desc">Detect fraud in real time, store every transaction on an immutable ledger, and monitor
+          risk from one dashboard.</p>
+        <button type="button" class="landing-cta" id="landing-enter-btn">
+          <span>Enter System</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </button>
+        <div class="landing-links">
+          <button type="button" class="landing-link-btn" data-action="enter-then-login">Login</button>
+          <span class="landing-link-sep">|</span>
+          <button type="button" class="landing-link-btn" data-action="enter-then-login">Get Started</button>
+        </div>
+      </div>
+      <div class="landing-right">
+        <div class="landing-card landing-card-1">
+          <span class="landing-card-icon">&#128274;</span>
+          <h3>Real-Time Fraud Detection</h3>
+          <p>AI-powered transaction analysis</p>
+        </div>
+        <div class="landing-card landing-card-2">
+          <span class="landing-card-icon">&#128279;</span>
+          <h3>Tamper-Proof Ledger</h3>
+          <p>Blockchain audit trail</p>
+        </div>
+        <div class="landing-card landing-card-3">
+          <span class="landing-card-icon">&#128200;</span>
+          <h3>Enterprise Dashboard</h3>
+          <p>KPIs, alerts & reports</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== BOOT LOADER (block-chain style, no radar) ========== -->
+  <div id="boot-loader" class="app-section d-none">
+    <div class="boot-chain">
+      <span class="boot-block"></span>
+      <span class="boot-block"></span>
+      <span class="boot-block"></span>
+      <span class="boot-block"></span>
+      <span class="boot-block"></span>
+    </div>
+    <h1 class="gradient-text boot-title">SecureChain</h1>
+    <p class="boot-status" id="boot-status-text">Initializing System...</p>
+    <div class="progress-bar">
+      <div class="progress-fill" id="boot-progress-fill"></div>
+    </div>
+    <p class="progress-text" id="boot-progress-text">0% Complete</p>
+  </div>
+
+  <!-- ========== LOGIN SECTION (dual panel: email + password only; role by email) ========== -->
+  <div id="login-section" class="app-section d-none">
+    <div class="login-wrapper animate-scale-in">
+      <div class="login-panel login-panel-left">
+        <div class="login-brand">
+          <span class="logo-text logo-text-light">SecureChain</span>
+          <p class="login-tagline">Business Fraud Detection Using Blockchain</p>
+        </div>
+        <div class="login-visual">
+          <div class="login-orb login-orb-1"></div>
+          <div class="login-orb login-orb-2"></div>
+          <div class="login-orb login-orb-3"></div>
+        </div>
+        <p class="login-hint">Sign in to access the SecureChain dashboard.</p>
+      </div>
+      <div class="login-panel login-panel-right">
+        <div class="login-form-wrap" id="login-form-wrap">
+          <h2 class="login-form-title">Welcome back</h2>
+          <p class="login-form-subtitle">Sign in with your email and password</p>
+          <form id="login-form" class="login-form">
+            <div class="mb-3">
+              <label for="login-email" class="form-label">Email</label>
+              <input type="email" class="form-control form-control-auth" id="login-email" required
+                placeholder="you@company.com" autocomplete="email">
+            </div>
+            <div class="mb-4">
+              <label for="login-password" class="form-label">Password</label>
+              <div class="password-input-wrap">
+                <input type="password" class="form-control form-control-auth" id="login-password" required
+                  placeholder="••••••••" autocomplete="current-password">
+                <button type="button" class="password-toggle-btn" id="login-password-toggle" aria-label="Show password"
+                  title="Show password">
+                  <svg class="icon-eye" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  <svg class="icon-eye-off d-none" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                  </svg>
+                </button>
+              </div>
+              <div class="mt-2 text-end">
+                <button type="button" class="btn btn-link-auth p-0 btn-link-auth-inline" id="login-show-forgot">Forgot
+                  password?</button>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary-auth w-100 mb-3">Sign in</button>
+            <div class="login-form-links">
+              <button type="button" class="btn btn-link-auth" data-action="show-landing">Back to Home</button>
+              <button type="button" class="btn btn-link-auth" id="login-show-signup">Create account</button>
+            </div>
+          </form>
+          <p class="login-demo-hint">Sign in with your account credentials.</p>
+        </div>
+        <div class="login-form-wrap login-signup-wrap d-none" id="forgot-form-wrap">
+          <h2 class="login-form-title">Forgot password</h2>
+          <p class="login-form-subtitle">Enter your email to receive password reset instructions.</p>
+          <form id="forgot-password-form" class="login-form">
+            <div class="mb-4">
+              <label for="forgot-email" class="form-label">Email</label>
+              <input type="email" class="form-control form-control-auth" id="forgot-email" required
+                placeholder="you@company.com" autocomplete="email">
+            </div>
+            <button type="submit" class="btn btn-primary-auth w-100 mb-3">Send reset link</button>
+            <button type="button" class="btn btn-link-auth w-100" id="forgot-show-login">Back to Sign in</button>
+          </form>
+        </div>
+        <div class="login-form-wrap login-signup-wrap d-none" id="signup-form-wrap">
+          <h2 class="login-form-title">Create account</h2>
+          <p class="login-form-subtitle">Create an account to access SecureChain.</p>
+          <form id="signup-form-same-page" class="login-form">
+            <div class="mb-3">
+              <label for="signup-email" class="form-label">Email</label>
+              <input type="email" class="form-control form-control-auth" id="signup-email" required
+                placeholder="you@company.com" autocomplete="email">
+            </div>
+            <div class="mb-3">
+              <label for="signup-password" class="form-label">Password</label>
+              <div class="password-input-wrap">
+                <input type="password" class="form-control form-control-auth" id="signup-password" required
+                  minlength="4" placeholder="••••••••" autocomplete="new-password">
+                <button type="button" class="password-toggle-btn" id="signup-password-toggle" aria-label="Show password"
+                  title="Show password">
+                  <svg class="icon-eye" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  <svg class="icon-eye-off d-none" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="signup-confirm" class="form-label">Confirm password</label>
+              <div class="password-input-wrap">
+                <input type="password" class="form-control form-control-auth" id="signup-confirm" required
+                  placeholder="••••••••" autocomplete="new-password">
+                <button type="button" class="password-toggle-btn" id="signup-confirm-toggle" aria-label="Show password"
+                  title="Show password">
+                  <svg class="icon-eye" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  <svg class="icon-eye-off d-none" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary-auth w-100 mb-3">Create account</button>
+            <button type="button" class="btn btn-link-auth w-100" id="signup-show-login">Already have an account? Sign
+              in</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MAIN APP LAYOUT (after login) ========== -->
+  <div id="app-layout" class="app-section d-none">
+    <aside class="app-sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <button type="button" class="sidebar-logo-icon" id="sidebar-logo-toggle" title="Toggle menu"
+          aria-label="Toggle menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23" />
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+        </button>
+        <div class="sidebar-brand">
+          <span class="logo-text sidebar-logo-text">SecureChain</span>
+          <span class="sidebar-tagline">Fraud Detection</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <span class="sidebar-group-label">OVERVIEW</span>
+        <a href="#" class="sidebar-link active" data-section="dashboard" data-tooltip="Dashboard">
+          <span class="sidebar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" />
+            </svg></span>
+          <span class="sidebar-link-text">Dashboard</span>
+        </a>
+        <span class="sidebar-group-label">FRAUD & TRANSACTIONS</span>
+        <a href="#" class="sidebar-link" data-section="transactions" data-tooltip="Transactions">
+          <span class="sidebar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23" />
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg></span>
+          <span class="sidebar-link-text">Transactions</span>
+        </a>
+        <a href="#" class="sidebar-link" data-section="reports" data-tooltip="Reports">
+          <span class="sidebar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <line x1="18" y1="20" x2="18" y2="10" />
+              <line x1="12" y1="20" x2="12" y2="4" />
+              <line x1="6" y1="20" x2="6" y2="14" />
+            </svg></span>
+          <span class="sidebar-link-text">Reports</span>
+        </a>
+        <a href="#" class="sidebar-link" data-section="expense-tracker" data-tooltip="Expense Tracker">
+          <span class="sidebar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23" />
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg></span>
+          <span class="sidebar-link-text">Expense Tracker</span>
+        </a>
+        <a href="#" class="sidebar-link" data-section="wallet" data-tooltip="Wallet">
+          <span class="sidebar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+              <line x1="1" y1="10" x2="23" y2="10" />
+            </svg></span>
+          <span class="sidebar-link-text">Wallet</span>
+        </a>
+        <span class="sidebar-group-label">SYSTEM</span>
+        <a href="#" class="sidebar-link nav-ledger" data-section="blockchain-ledger" data-tooltip="Blockchain Ledger">
+          <span class="sidebar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg></span>
+          <span class="sidebar-link-text">Blockchain Ledger</span>
+        </a>
+        <span class="sidebar-group-label" id="sidebar-label-admin">ADMIN</span>
+        <a href="#" class="sidebar-link" id="sidebar-link-settings" data-section="settings" data-tooltip="Settings">
+          <span class="sidebar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg></span>
+          <span class="sidebar-link-text">Settings</span>
+        </a>
+      </nav>
+      <div class="sidebar-tooltip" id="sidebar-tooltip" role="tooltip" aria-hidden="true"></div>
+    </aside>
+    <div class="app-main" id="app-main">
+      <header class="app-header">
+        <span class="app-name">SecureChain</span>
+        <input type="search" class="header-search" id="header-search" placeholder="Search transactions, alerts..."
+          aria-label="Search">
+        <div class="header-right">
+          <div class="header-notifications-wrap">
+            <button type="button" class="header-icon-btn header-notifications-btn" id="header-notifications"
+              title="Notifications" aria-label="Notifications" aria-expanded="false" aria-haspopup="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+              <span class="header-notifications-badge d-none" id="header-notifications-badge">0</span>
+            </button>
+            <div class="header-notifications-panel d-none" id="header-notifications-panel">
+              <div class="header-notifications-title">Notifications</div>
+              <div class="header-notifications-list" id="header-notifications-list"></div>
+              <div class="header-notifications-empty text-secondary small" id="header-notifications-empty">No new
+                notifications. Live alerts will appear here when connected to the backend.</div>
+            </div>
+          </div>
+          <div class="header-user-dropdown" id="header-user-dropdown">
+            <button type="button" class="header-user-btn" id="header-user-btn" aria-expanded="false"
+              aria-haspopup="true">
+              <span class="header-user-avatar" id="header-user-avatar">AD</span>
+              <span class="header-user-meta">
+                <span class="header-user-role" id="header-user-role">Admin</span>
+                <span class="header-user-name" id="header-user-name">Admin User</span>
+              </span>
+              <span class="header-user-chevron">&#9660;</span>
+            </button>
+            <div class="header-user-menu d-none" id="header-user-menu">
+              <a href="#" class="header-user-menu-item" data-section="profile">Profile</a>
+              <a href="#" class="header-user-menu-item" id="header-menu-item-settings"
+                data-section="settings">Settings</a>
+              <button type="button" class="header-user-menu-item header-user-logout" id="header-logout">Logout</button>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="app-content">
+        <div id="dashboard-section" class="content-section">
+          <h1 class="page-title page-title-anim mb-1">Dashboard</h1>
+          <p class="page-subtitle text-secondary mb-4">AI-powered fraud detection and blockchain audit overview.</p>
+          <div class="row g-3 mb-4 content-stagger">
+            <div class="col-6 col-lg-3 content-item">
+              <div class="kpi-card card kpi-card-default">
+                <div class="card-body">
+                  <div class="kpi-icon-wrap kpi-icon-doc"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                      <polyline points="10 9 9 9 8 9" />
+                    </svg></div>
+                  <p class="kpi-label">Total Transactions</p>
+                  <p class="kpi-value" id="kpi-total">0</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3 content-item">
+              <div class="kpi-card card kpi-card-warning" id="kpi-card-suspicious">
+                <div class="card-body">
+                  <div class="kpi-icon-wrap kpi-icon-warning"><svg width="20" height="20" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg></div>
+                  <p class="kpi-label">Suspicious Transactions</p>
+                  <p class="kpi-value text-warning" id="kpi-suspicious">0</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3 content-item">
+              <div class="kpi-card card kpi-card-danger" id="kpi-card-fraud-rate">
+                <div class="card-body">
+                  <div class="kpi-icon-wrap kpi-icon-danger"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="8" x2="12" y2="12" />
+                      <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg></div>
+                  <p class="kpi-label">Fraud Rate %</p>
+                  <p class="kpi-value" id="kpi-fraud-rate">0%</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3 content-item">
+              <div class="kpi-card card kpi-card-success">
+                <div class="card-body">
+                  <div class="kpi-icon-wrap kpi-icon-success"><svg width="20" height="20" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                    </svg></div>
+                  <p class="kpi-label">Today's Activity</p>
+                  <p class="kpi-value" id="kpi-today">0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-4 content-item dashboard-graph-card">
+            <div class="card-body">
+              <div class="dashboard-graph-row">
+                <div class="dashboard-graph-col dashboard-gauge-col">
+                  <h5 class="card-title mb-3">RISK score</h5>
+                  <div class="ai-risk-gauge-wrap">
+                    <canvas id="dashboard-ai-risk-gauge" class="ai-risk-gauge" width="220" height="220"
+                      aria-label="RISK score gauge"></canvas>
+                    <div id="dashboard-ai-risk-value" class="ai-risk-gauge-value">0%</div>
+                  </div>
+                </div>
+                <div class="dashboard-graph-col dashboard-bars-col">
+                  <h5 class="card-title mb-3">Weekly Activity</h5>
+                  <div class="chart-container chart-container-bars">
+                    <canvas id="dashboard-weekly-bars" aria-label="Weekly activity by day"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card content-item">
+            <div class="card-body">
+              <h5 class="card-title mb-3">Live Alerts Feed</h5>
+              <p class="text-secondary small mb-3">Last 5 transactions — real-time monitoring</p>
+              <div id="dashboard-live-alerts" class="live-alerts-feed" aria-label="Live alerts"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="transactions-section" class="content-section d-none">
+          <h1 class="page-title page-title-anim mb-4">Transactions</h1>
+          <div class="card mb-4 content-item">
+            <div class="card-body">
+              <h5 class="card-title mb-3">Add Transaction</h5>
+              <form id="add-transaction-form" class="row g-3">
+                <div class="col-md-4">
+                  <label for="tx-sender" class="form-label">Sender</label>
+                  <input type="text" class="form-control" id="tx-sender" required placeholder="Sender name or ID">
+                </div>
+                <div class="col-md-4">
+                  <label for="tx-receiver" class="form-label">Receiver</label>
+                  <input type="text" class="form-control" id="tx-receiver" required placeholder="Receiver name or ID">
+                </div>
+                <div class="col-md-4">
+                  <label for="tx-amount" class="form-label">Amount</label>
+                  <input type="number" class="form-control" id="tx-amount" required min="0" step="0.01"
+                    placeholder="0.00">
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Submit Transaction</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="card content-item">
+            <div class="card-body">
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <input type="search" class="form-control form-control-sm search-input" id="tx-search"
+                  placeholder="Search transactions...">
+                <select class="form-select form-select-sm status-filter" id="tx-status-filter"
+                  style="max-width: 180px;">
+                  <option value="">All statuses</option>
+                  <option value="Clear">Clear</option>
+                  <option value="Suspicious">Suspicious</option>
+                </select>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-hover" id="transactions-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Sender</th>
+                      <th>Receiver</th>
+                      <th>Amount</th>
+                      <th>Fraud Score</th>
+                      <th>Status</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+              <nav class="mt-3" id="transactions-pagination"></nav>
+            </div>
+          </div>
+        </div>
+
+        <div id="fraud-alerts-section" class="content-section d-none">
+          <h1 class="page-title page-title-anim mb-4">Fraud Alerts</h1>
+          <div class="card content-item">
+            <div class="card-body">
+              <p class="text-secondary mb-3">Transactions flagged as suspicious (fraud score &gt; 0.7).</p>
+              <div class="table-responsive">
+                <table class="table table-hover" id="fraud-alerts-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Sender</th>
+                      <th>Receiver</th>
+                      <th>Amount</th>
+                      <th>Fraud %</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="blockchain-ledger-section" class="content-section d-none">
+          <h1 class="page-title page-title-anim mb-4">Blockchain Ledger</h1>
+          <p class="text-secondary mb-3">Append-only ledger. Each block is cryptographically linked.</p>
+          <div class="card ledger-card content-item" id="ledger-container">
+            <div class="card-body">
+              <div id="blockchain-blocks"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="profile-section" class="content-section d-none">
+          <h1 class="page-title page-title-anim mb-4">Profile</h1>
+          <div class="card content-item">
+            <div class="card-body" id="profile-section-body">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+
+        <div id="expense-tracker-section" class="content-section d-none">
+          <h1 class="page-title page-title-anim mb-4">Expense Tracker</h1>
+          <p class="page-subtitle text-secondary mb-4">Track how much is received and how much is spent across all
+            transactions.</p>
+          <div class="row g-4 mb-4 content-stagger">
+            <div class="col-md-6 content-item">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="expense-tracker-icon expense-tracker-icon-received">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M12 5v14M5 12l7 7 7-7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="text-secondary small">Total Received</div>
+                      <div class="h4 mb-0" id="expense-tracker-received">—</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 content-item">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="expense-tracker-icon expense-tracker-icon-spent">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M12 19V5M5 12l7-7 7 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="text-secondary small">Total Spent</div>
+                      <div class="h4 mb-0" id="expense-tracker-spent">—</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card content-item expense-tracker-count-card" id="expense-tracker-count-card" role="button" tabindex="0">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">Transaction count</h5>
+                <span class="h5 mb-0 text-secondary" id="expense-tracker-count">—</span>
+              </div>
+              <p class="text-secondary small mb-0">Received and spent are computed from all transactions in the system.
+                Each transaction adds to both received (for the receiver) and spent (for the sender).</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="wallet-section" class="content-section d-none">
+          <h1 class="page-title page-title-anim mb-1">Wallet</h1>
+          <p class="page-subtitle text-secondary mb-4">Manage your demo wallet — add funds and transfer money to other
+            users via blockchain IDs.</p>
+
+          <div class="row g-4 mb-4 content-stagger">
+            <div class="col-md-6 content-item">
+              <div class="card wallet-id-card">
+                <div class="card-body">
+                  <div class="wallet-id-label">Your Wallet ID</div>
+                  <div class="wallet-id-value-wrap">
+                    <code class="wallet-id-value" id="wallet-id-display">Loading...</code>
+                    <button type="button" class="btn btn-sm btn-outline-secondary wallet-copy-btn" id="wallet-copy-btn"
+                      title="Copy Wallet ID">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                        <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="wallet-email-label" id="wallet-email-display"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 content-item">
+              <div class="card wallet-balance-card">
+                <div class="card-body">
+                  <div class="wallet-balance-label">Available Balance</div>
+                  <div class="wallet-balance-value" id="wallet-balance-display">₹0.00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4 mb-4 content-stagger">
+            <div class="col-md-6 content-item">
+              <div class="card wallet-deposit-card">
+                <div class="card-body text-center">
+                  <div class="wallet-deposit-icon-wrap">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                      <line x1="1" y1="10" x2="23" y2="10" />
+                    </svg>
+                    <svg class="wallet-deposit-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2.5">
+                      <path d="M12 5v14M5 12l7 7 7-7" />
+                    </svg>
+                  </div>
+                  <h5 class="card-title mb-2">Add Money</h5>
+                  <p class="text-secondary small mb-3">Deposit from Bank via UPI, Card, or Netbanking</p>
+                  <button type="button" class="btn btn-deposit-primary" id="wallet-open-deposit-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    Add Money to Wallet
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 content-item">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title mb-3">Send Money</h5>
+                  <form id="wallet-transfer-form">
+                    <div class="mb-3">
+                      <label for="wallet-receiver-id" class="form-label">Receiver Wallet ID</label>
+                      <input type="text" class="form-control" id="wallet-receiver-id" required
+                        placeholder="Paste receiver's wallet ID">
+                      <div class="form-text" id="wallet-receiver-preview"></div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="wallet-transfer-amount" class="form-label">Amount (₹)</label>
+                      <input type="number" class="form-control" id="wallet-transfer-amount" required min="1" step="0.01"
+                        placeholder="0.00">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Send Money</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="wallet-transfer-result" class="mb-4 d-none"></div>
+
+          <div class="card content-item">
+            <div class="card-body">
+              <h5 class="card-title mb-3">Transfer History</h5>
+              <div class="table-responsive">
+                <table class="table table-hover" id="wallet-transactions-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Type</th>
+                      <th>From</th>
+                      <th>To</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="settings-section" class="content-section d-none">
+          <h1 class="page-title page-title-anim mb-4">Settings</h1>
+          <div class="card content-item">
+            <div class="card-body" id="settings-section-body">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+
+        <div id="reports-section" class="content-section d-none">
+          <h1 class="page-title page-title-anim mb-4">Reports</h1>
+          <p class="page-subtitle text-secondary mb-4">Historical analysis and fraud distribution.</p>
+          <div class="mb-4 content-item">
+            <label for="reports-date-filter" class="form-label me-2">Date range</label>
+            <select class="form-select form-select-sm d-inline-block w-auto" id="reports-date-filter"
+              aria-label="Reports date filter">
+              <option value="month">Month</option>
+              <option value="quarter">Quarter</option>
+              <option value="year">Year</option>
+            </select>
+          </div>
+          <div class="row g-4 mb-4 content-stagger">
+            <div class="col-lg-6 content-item">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title mb-3">Fraud Distribution</h5>
+                  <div class="chart-container chart-pie">
+                    <canvas id="reports-pie-chart"></canvas>
+                  </div>
+                  <div id="reports-donut-legend" class="reports-donut-legend mt-2"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 content-item">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title mb-3">Status by Month</h5>
+                  <div class="chart-container">
+                    <canvas id="reports-line-chart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card content-item">
+            <div class="card-body">
+              <button type="button" class="btn btn-primary" id="export-csv-btn">Export CSV</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ========== DEPOSIT PAYMENT MODAL ========== -->
+  <div class="modal fade" id="deposit-modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content deposit-modal-content">
+        <!-- Step 1: Amount & Method -->
+        <div id="deposit-step-form">
+          <div class="modal-header deposit-modal-header">
+            <h5 class="modal-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                style="margin-right:8px;vertical-align:-3px">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                <line x1="1" y1="10" x2="23" y2="10" />
+              </svg>
+              Add Money to Wallet
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-4">
+              <label for="deposit-amount" class="form-label fw-semibold">Amount (₹)</label>
+              <input type="number" class="form-control form-control-lg deposit-amount-input" id="deposit-amount"
+                min="10" step="0.01" placeholder="Enter amount (min ₹10)" required>
+              <div class="form-text">Minimum deposit: ₹10</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Payment Method</label>
+              <div class="deposit-methods">
+                <label class="deposit-method-card active" data-method="upi">
+                  <input type="radio" name="deposit-method" value="upi" checked hidden>
+                  <div class="deposit-method-icon">📱</div>
+                  <div class="deposit-method-label">UPI</div>
+                  <div class="deposit-method-desc">Google Pay, PhonePe, etc.</div>
+                  <div class="deposit-method-check">✓</div>
+                </label>
+                <label class="deposit-method-card" data-method="card">
+                  <input type="radio" name="deposit-method" value="card" hidden>
+                  <div class="deposit-method-icon">💳</div>
+                  <div class="deposit-method-label">Card</div>
+                  <div class="deposit-method-desc">Debit / Credit Card</div>
+                  <div class="deposit-method-check">✓</div>
+                </label>
+                <label class="deposit-method-card" data-method="netbanking">
+                  <input type="radio" name="deposit-method" value="netbanking" hidden>
+                  <div class="deposit-method-icon">🏦</div>
+                  <div class="deposit-method-label">Netbanking</div>
+                  <div class="deposit-method-desc">Internet Banking</div>
+                  <div class="deposit-method-check">✓</div>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-deposit-primary" id="deposit-pay-btn">Pay Now</button>
+          </div>
+        </div>
+        <!-- Step 2: Processing -->
+        <div id="deposit-step-processing" class="d-none">
+          <div class="modal-body deposit-processing-body">
+            <div class="deposit-processing-spinner">
+              <div class="deposit-spinner-ring"></div>
+              <div class="deposit-spinner-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                  <line x1="1" y1="10" x2="23" y2="10" />
+                </svg>
+              </div>
+            </div>
+            <h5 class="mt-4 mb-2">Processing Payment...</h5>
+            <p class="text-secondary mb-1" id="deposit-processing-method">Connecting to UPI</p>
+            <p class="text-secondary small">Please do not close this window</p>
+          </div>
+        </div>
+        <!-- Step 3: Success -->
+        <div id="deposit-step-success" class="d-none">
+          <div class="modal-body deposit-success-body">
+            <div class="deposit-success-check">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            </div>
+            <h4 class="mt-3 mb-1">Payment Successful!</h4>
+            <p class="deposit-success-amount" id="deposit-success-amount">₹0.00</p>
+            <div class="deposit-success-details">
+              <div class="deposit-detail-row"><span>Payment ID</span><span id="deposit-success-payid">—</span></div>
+              <div class="deposit-detail-row"><span>Method</span><span id="deposit-success-method">—</span></div>
+              <div class="deposit-detail-row"><span>New Balance</span><span id="deposit-success-balance">—</span></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-deposit-primary w-100" data-bs-dismiss="modal">Done</button>
+          </div>
+        </div>
+        <!-- Step 4: Failure -->
+        <div id="deposit-step-failure" class="d-none">
+          <div class="modal-body deposit-failure-body">
+            <div class="deposit-failure-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="15" y1="9" x2="9" y2="15" />
+                <line x1="9" y1="9" x2="15" y2="15" />
+              </svg>
+            </div>
+            <h4 class="mt-3 mb-2">Payment Failed</h4>
+            <p class="text-secondary" id="deposit-failure-msg">Something went wrong. Please try again.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-deposit-primary" id="deposit-retry-btn">Try Again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== TRANSACTION DETAIL MODAL ========== -->
+  <div class="modal fade" id="transaction-detail-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Transaction Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="transaction-detail-body"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== TRANSACTION HISTORY MODAL ========== -->
+  <div class="modal fade app-theme-modal" id="transaction-history-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Transaction history</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-secondary mb-2" id="transaction-history-period-label">Showing last 12 hours</p>
+          <div class="mb-3">
+            <button type="button" class="btn btn-outline-secondary btn-sm" id="transaction-history-view-past-btn">View past history</button>
+            <div id="transaction-history-past-options" class="d-none mt-2">
+              <button type="button" class="btn btn-outline-primary btn-sm me-2 transaction-history-period-btn" data-days="7">7 days</button>
+              <button type="button" class="btn btn-outline-primary btn-sm me-2 transaction-history-period-btn" data-days="30">1 month</button>
+              <button type="button" class="btn btn-outline-primary btn-sm transaction-history-period-btn" data-days="180">6 months</button>
+            </div>
+          </div>
+          <div id="transaction-history-loading" class="d-none text-secondary small mb-2">Loading...</div>
+          <div id="transaction-history-empty" class="d-none text-secondary small mb-2">No data found</div>
+          <div class="table-responsive">
+            <table class="table table-hover" id="transaction-history-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Sender</th>
+                  <th>Receiver</th>
+                  <th>Amount</th>
+                  <th>Fraud Score</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody id="transaction-history-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== EDIT USER MODAL (change password) ========== -->
+  <div class="modal fade" id="edit-user-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="edit-user-email" value="">
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="text" class="form-control" id="edit-user-email-display" readonly>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">New password</label>
+            <input type="password" class="form-control" id="edit-user-password"
+              placeholder="Leave blank to keep current">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="edit-user-save">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== TOAST CONTAINER ========== -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container"></div>
+
+  <!-- ========== LOADING SPINNER (global) ========== -->
+  <div class="loading-overlay d-none" id="loading-overlay">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
